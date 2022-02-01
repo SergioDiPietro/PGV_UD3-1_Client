@@ -20,17 +20,15 @@ public class Main {
         oos = new ObjectOutputStream(socket.getOutputStream());
         ois = new ObjectInputStream(socket.getInputStream());
 
-        System.out.print("Introduzca su nombre de usuario: ");
-        oos.writeObject(sc.nextLine());
-
         try {
-            System.out.println("Historial de chat:\n" + ois.readObject());
-
-            String text = "";
-            while (!text.equals("bye")) {
-                System.out.print("\n> ");
-                text = sc.nextLine();
-                oos.writeObject(text);
+            while (true) {
+                String response = (String) ois.readObject();
+                System.out.println("<Server> " + response);
+                if (!response.equals("goodbye")) {
+                    System.out.print("> ");
+                    String text = sc.nextLine();
+                    oos.writeObject(text);
+                } else break;
             }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -38,9 +36,26 @@ public class Main {
             if (socket != null) socket.close();
             if (ois != null) ois.close();
             if (oos != null) oos.close();
-            System.out.println("Conexión cerrada.");
+            System.out.println("\nConexión cerrada.");
         }
 
         sc.close();
+
+//        try {
+//            System.out.println("Historial de chat:\n" + ois.readObject());
+//
+////            String text = "";
+////            while (!text.equals("bye")) {
+////                System.out.print("> ");
+////                text = sc.nextLine();
+////                oos.writeObject(text);
+////            }
+//            String response = (String)ois.readObject();
+//            while (!response.equals("goodbye")) {
+//                System.out.print("> ");
+//                oos.writeObject(sc.nextLine());
+//                response = (String)ois.readObject();
+//            }
+
     }
 }
