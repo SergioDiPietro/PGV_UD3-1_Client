@@ -40,22 +40,5 @@ public class Main {
         }
 
         sc.close();
-
-//        try {
-//            System.out.println("Historial de chat:\n" + ois.readObject());
-//
-////            String text = "";
-////            while (!text.equals("bye")) {
-////                System.out.print("> ");
-////                text = sc.nextLine();
-////                oos.writeObject(text);
-////            }
-//            String response = (String)ois.readObject();
-//            while (!response.equals("goodbye")) {
-//                System.out.print("> ");
-//                oos.writeObject(sc.nextLine());
-//                response = (String)ois.readObject();
-//            }
-
     }
 }
